@@ -125,3 +125,12 @@ class OrbitPropagator:
             plt.show()
         if save_plot:
             plt.savefig(title + '.png', dpi=300)
+
+    def calculate_coes(self, degrees=True):
+        print("calculating coes")
+
+        self.coes = np.zeros((self.n_steps, 6))
+
+        for n in range(self.n_steps):
+            self.coes[n,:]=t.rv2coes(self.rs[n,:], self.vs[n,:], mu=self.cb['mu'], degrees=degrees)
+
